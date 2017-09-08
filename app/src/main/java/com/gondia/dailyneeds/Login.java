@@ -15,6 +15,11 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.gondia.dailyneeds.LoginSharedPreferences.UserSharedPreference;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -22,6 +27,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 
 public class Login extends AppCompatActivity implements View.OnClickListener,GoogleApiClient.OnConnectionFailedListener {
     private Button login,register;
@@ -32,8 +40,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener,Goo
     private static final String TAG = "SignInActivity";
     private static final int RC_SIGN_IN = 9001;
 
+    private LoginButton fb;
 
-    //private CallbackManager callbackManager;
+
+
+    private CallbackManager callbackManager;
     private GoogleApiClient mGoogleApiClient;
     private TextView mStatusTextView;
     private ProgressDialog mProgressDialog;
@@ -42,9 +53,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener,Goo
     @Override
     protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
+        FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_login);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         session=new UserSharedPreference(getApplicationContext());
 
@@ -65,7 +78,34 @@ public class Login extends AppCompatActivity implements View.OnClickListener,Goo
                 .enableAutoManage(this , this/* OnConnectionFailedListener*/ )
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
+        callbackManager = CallbackManager.Factory.create();
+        fb= (LoginButton) findViewById(R.id.fbbt);
 
+
+        fb.setReadPermissions("email");
+        fb.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                //getUserDetails(loginResult);
+                System.out.println("onSuccess "+loginResult);
+                loginResult.getRecentlyGrantedPermissions();
+
+                Intent mainLobby = new Intent(Login.this, MainActivity.class);
+
+                startActivity(mainLobby);
+
+            }
+
+            @Override
+            public void onCancel() {
+                // App code
+            }
+
+            @Override
+            public void onError(FacebookException exception) {
+                // App code
+            }
+        });
     }
 
 
@@ -105,7 +145,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener,Goo
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-
+        callbackManager.onActivityResult(requestCode, resultCode, data);
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);

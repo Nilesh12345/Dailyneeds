@@ -36,6 +36,13 @@
         android:layout_gravity="center"
         android:src="@drawable/gconnect"
         android:id="@+id/gplusloginbt"/>
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/fbbt"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

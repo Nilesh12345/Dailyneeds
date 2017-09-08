@@ -9,4 +9,7 @@
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_login">Login</string>
     <string name="title_activity_maps">Map</string>
+
+    <string name="facebook_app_id">888018651345422</string>
+    <string name="fb_login_protocol_scheme">fb888018651345422</string>
 </resources>
