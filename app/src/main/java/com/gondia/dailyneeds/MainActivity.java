@@ -13,9 +13,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.gondia.dailyneeds.NavigationHandler.NavigationHandler;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    private View headerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +42,8 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        headerView =  navigationView.inflateHeaderView(R.layout.nav_header_main);
+        processNavigationDrawer();
     }
 
     @Override
@@ -80,9 +84,19 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
 
 
+
+        return true;
+
+    }
+    private void processNavigationDrawer() {
+        NavigationHandler.processNavigationDrawer(headerView, getApplicationContext());
+        // NavigationHandler.navigation(this,d,headerView);
+    }
+    public  boolean  navigation(View d) {
+
+        NavigationHandler.navigation(this,d,headerView);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-
     }
 }
