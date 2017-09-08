@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.login.LoginManager;
 import com.gondia.dailyneeds.Login;
 import com.gondia.dailyneeds.LoginSharedPreferences.UserSharedPreference;
 import com.gondia.dailyneeds.R;
@@ -57,6 +58,10 @@ public class NavigationHandler {
         AlertDialog alertDialog = alertBuilder.create();
         alertDialog.setTitle("Confirm ?");
         alertDialog.show();
+        if(Login.flagFB==true) {
+            LoginManager.getInstance().logOut();
+            Login.flagFB=false;
+        }
     }
 
     public static void setLoginHeaderData(View headerView, Context c){

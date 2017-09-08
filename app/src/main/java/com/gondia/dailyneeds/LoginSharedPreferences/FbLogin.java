@@ -1,7 +1,12 @@
 package com.gondia.dailyneeds.LoginSharedPreferences;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+
+import com.gondia.dailyneeds.Login;
+import com.gondia.dailyneeds.MainActivity;
 
 import org.json.JSONObject;
 
@@ -15,7 +20,8 @@ import static android.content.ContentValues.TAG;
  */
 
 public class FbLogin {
-    public  static Bundle getFacebookData(JSONObject object) {
+    public  static Bundle getFacebookData(JSONObject object, Context c) {
+        Login login=new Login();
         Bundle bundle = new Bundle();
 
         try {
@@ -50,9 +56,13 @@ public class FbLogin {
                 bundle.putString("gender", object.getString("gender"));
                 gender=object.getString("gender");
             }
-
+            //login.setSession(name,email);
             UserSharedPreference.createUserLoginSession(name,email);
-
+            Login.flagFB=true;
+            Intent i=new Intent(c, MainActivity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            c.startActivity(i);
 
         } catch (Exception e) {
             Log.d(TAG, "BUNDLE Exception : "+e.toString());

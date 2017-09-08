@@ -44,6 +44,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener,Goo
     private EditText username,password;
     UserSharedPreference session;
     private ImageButton glogin;
+    public static Boolean flagFB=false;
 
     private static final String TAG = "SignInActivity";
     private static final int RC_SIGN_IN = 9001;
@@ -105,7 +106,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener,Goo
                                                     GraphResponse response) {
 
                                 // Getting FB User Data
-                                Bundle facebookData = getFacebookData(jsonObject);
+                                Bundle facebookData = getFacebookData(jsonObject,getApplicationContext());
 
 
                             }
@@ -114,13 +115,14 @@ public class Login extends AppCompatActivity implements View.OnClickListener,Goo
                 parameters.putString("fields", "id,first_name,last_name,email,gender");
                 request.setParameters(parameters);
                 request.executeAsync();
+                flagFB=true;
                 //getUserDetails(loginResult);
-                System.out.println("onSuccess "+loginResult);
+                /*System.out.println("onSuccess "+loginResult);
                 loginResult.getRecentlyGrantedPermissions();
 
                 Intent mainLobby = new Intent(Login.this, MainActivity.class);
 
-                startActivity(mainLobby);
+                startActivity(mainLobby);*/
 
             }
 
