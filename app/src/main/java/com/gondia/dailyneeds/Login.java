@@ -18,6 +18,8 @@ import android.widget.TextView;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.gondia.dailyneeds.LoginSharedPreferences.UserSharedPreference;
@@ -30,6 +32,12 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
+
+import org.json.JSONObject;
+
+import java.util.Arrays;
+
+import static com.gondia.dailyneeds.LoginSharedPreferences.FbLogin.getFacebookData;
 
 public class Login extends AppCompatActivity implements View.OnClickListener,GoogleApiClient.OnConnectionFailedListener {
     private Button login,register;
@@ -82,10 +90,30 @@ public class Login extends AppCompatActivity implements View.OnClickListener,Goo
         fb= (LoginButton) findViewById(R.id.fbbt);
 
 
-        fb.setReadPermissions("email");
+        fb.setReadPermissions(Arrays.asList(
+                "public_profile", "email"));
         fb.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
+                String accessToken = loginResult.getAccessToken().getToken();
+
+                GraphRequest request = GraphRequest.newMeRequest(
+                        loginResult.getAccessToken(),
+                        new GraphRequest.GraphJSONObjectCallback() {
+                            @Override
+                            public void onCompleted(JSONObject jsonObject,
+                                                    GraphResponse response) {
+
+                                // Getting FB User Data
+                                Bundle facebookData = getFacebookData(jsonObject);
+
+
+                            }
+                        });
+                Bundle parameters = new Bundle();
+                parameters.putString("fields", "id,first_name,last_name,email,gender");
+                request.setParameters(parameters);
+                request.executeAsync();
                 //getUserDetails(loginResult);
                 System.out.println("onSuccess "+loginResult);
                 loginResult.getRecentlyGrantedPermissions();

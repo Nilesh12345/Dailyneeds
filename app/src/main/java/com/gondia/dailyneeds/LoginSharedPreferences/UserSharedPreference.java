@@ -29,7 +29,7 @@ public class UserSharedPreference {
         editor=sharedPreferences.edit();
     }
 
-    public void createUserLoginSession(String name,String email){
+    public  static  void createUserLoginSession(String name,String email){
         editor.putBoolean(IS_USER_LOGIN,true);
         editor.putString(KEY_NAME,name);
         editor.putString(KEY_EMAIL,email);
