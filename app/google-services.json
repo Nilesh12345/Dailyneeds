@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "157670717067",
+    "project_id": "firebase-dailyneeds"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:157670717067:android:ef902a38b721804d",
+        "android_client_info": {
+          "package_name": "com.gondia.dailyneeds"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "157670717067-in26hkee135oj12ph3f5dgkn7nf3j8pt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gondia.dailyneeds",
+            "certificate_hash": "98e4c34af328c1b9291f5cb8706d6bbcefcd5c8e"
+          }
+        },
+        {
+          "client_id": "157670717067-0ib6l2rkmtkrn7slp3532kems9ulqin1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeauTY7t95ngMs5bYEGQN4545ExpBGTMo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
