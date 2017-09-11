@@ -89,12 +89,12 @@ public class MainActivity extends AppCompatActivity
 
     }
     private void processNavigationDrawer() {
-        NavigationHandler.processNavigationDrawer(headerView, getApplicationContext());
+        //NavigationHandler.processNavigationDrawer(headerView, getApplicationContext());
         // NavigationHandler.navigation(this,d,headerView);
     }
     public  boolean  navigation(View d) {
 
-        NavigationHandler.navigation(this,d,headerView);
+        //NavigationHandler.navigation(this,d,headerView);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

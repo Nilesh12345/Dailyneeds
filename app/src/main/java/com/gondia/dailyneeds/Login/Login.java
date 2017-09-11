@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -25,6 +26,7 @@ import com.facebook.login.widget.LoginButton;
 import com.gondia.dailyneeds.LoginSharedPreferences.UserSharedPreference;
 import com.gondia.dailyneeds.MainActivity;
 import com.gondia.dailyneeds.R;
+import com.gondia.dailyneeds.root.App;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -39,12 +41,21 @@ import org.json.JSONObject;
 
 import java.util.Arrays;
 
+import javax.inject.Inject;
+
 import static com.gondia.dailyneeds.LoginSharedPreferences.FbLogin.getFacebookData;
 
-public class Login extends AppCompatActivity implements View.OnClickListener,GoogleApiClient.OnConnectionFailedListener {
+public class Login extends AppCompatActivity implements LoginActivityMVP.View/*View.OnClickListener,GoogleApiClient.OnConnectionFailedListener */{
+
+    @Inject
+    LoginActivityMVP.Presenter presenter;
+
+
     private Button login,register;
     private EditText username,password;
-    UserSharedPreference session;
+
+
+    /*UserSharedPreference session;
     private ImageButton glogin;
     public static Boolean flagFB=false;
 
@@ -59,25 +70,76 @@ public class Login extends AppCompatActivity implements View.OnClickListener,Goo
     private GoogleApiClient mGoogleApiClient;
     private TextView mStatusTextView;
     private ProgressDialog mProgressDialog;
-    private TextView skip;
+    private TextView skip;*/
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)  {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_login);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        ((App) getApplication()).getComponent().inject(this);
+        //session = new UserSharedPreference(getApplicationContext());
 
-        session=new UserSharedPreference(getApplicationContext());
+        login = (Button) findViewById(R.id.btlogin);
+        username = (EditText) findViewById(R.id.etusername);
+        password = (EditText) findViewById(R.id.etpassword);
+        login.setOnClickListener(new View.OnClickListener(){
 
-        login= (Button) findViewById(R.id.btlogin);
-        username= (EditText) findViewById(R.id.etusername);
-        password= (EditText) findViewById(R.id.etpassword);
-        glogin= (ImageButton) findViewById(R.id.gplusloginbt);
-        glogin.setOnClickListener(this);
-        login.setOnClickListener(this);
+            @Override
+            public void onClick(View view) {
+                presenter.loginButtonedClicked();
+            }
+        });
+        //glogin = (ImageButton) findViewById(R.id.gplusloginbt);
+        //glogin.setOnClickListener(this);
+        //login.setOnClickListener(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        presenter.setView(this);
+        presenter.getCurrentUser();
+    }
+
+    @Override
+    public String getFirstName() {
+        return username.getText().toString();
+    }
+
+    @Override
+    public String getLastName() {
+        return password.getText().toString();
+    }
+
+    @Override
+    public void showUserNotAvailable() {
+        Toast.makeText(this,"Error,the user is not available",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showInputError() {
+        Toast.makeText(this,"username or password cannot be empty",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showUserSavedMessage() {
+        Toast.makeText(this,"User saved",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void setFirstName(String fname) {
+        username.setText(fname);
+    }
+
+    @Override
+    public void setLastName(String lname) {
+        password.setText(lname);
+    }
+        /*
 
         skip= (TextView) findViewById(R.id.skipToMain);
         skip.setOnClickListener(this);
@@ -86,7 +148,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener,Goo
                 .requestEmail()
                 .build();
         mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this , this/* OnConnectionFailedListener*/ )
+                .enableAutoManage(this , this/* OnConnectionFailedListener )
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
         callbackManager = CallbackManager.Factory.create();
@@ -124,7 +186,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener,Goo
 
                 Intent mainLobby = new Intent(Login.this, MainActivity.class);
 
-                startActivity(mainLobby);*/
+                startActivity(mainLobby);
 
             }
 
@@ -138,10 +200,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener,Goo
                 // App code
             }
         });
-    }
+    }*/
 
 
-    @Override
+   /* @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btlogin:
@@ -213,6 +275,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener,Goo
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
-    }
+    }*/
 
 }

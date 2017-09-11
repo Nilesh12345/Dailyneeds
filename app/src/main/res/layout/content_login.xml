@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:hint="password"
         android:id="@+id/etpassword"
-        android:inputType="textPassword"
+
         tools:layout_editor_absoluteY="0dp"
         tools:layout_editor_absoluteX="8dp" />
     <Button
@@ -37,13 +37,13 @@
         android:layout_gravity="center"
         android:src="@drawable/gconnect"
         android:id="@+id/gplusloginbt"/>
-    <com.facebook.login.widget.LoginButton
+   <!-- <com.facebook.login.widget.LoginButton
         android:id="@+id/fbbt"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        />
+        />-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

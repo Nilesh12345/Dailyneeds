@@ -6,5 +6,5 @@ package com.gondia.dailyneeds.Login;
 
 public interface LoginRepository {
     User getUser();
-    void setUser();
+    void setUser(User user);
 }

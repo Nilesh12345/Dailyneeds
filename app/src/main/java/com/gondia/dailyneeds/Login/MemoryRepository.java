@@ -5,13 +5,26 @@ package com.gondia.dailyneeds.Login;
  */
 
 public class MemoryRepository implements LoginRepository {
+    private User user;
+
     @Override
     public User getUser() {
-        return null;
+        if (user==null){
+            User user=new User("Amish","Kundnani");
+            user.setId(0);
+            return  user;
+        }
+        else {
+            return user;
+        }
+
     }
 
     @Override
-    public void setUser() {
-
+    public void setUser(User user) {
+        if (user==null){
+            user=getUser();
+        }
+        this.user=user;
     }
 }

@@ -20,7 +20,7 @@ import com.gondia.dailyneeds.R;
  */
 
 public class NavigationHandler {
-    public static void processNavigationDrawer(View headerView, Context c) {
+   /* public static void processNavigationDrawer(View headerView, Context c) {
         setLoginHeaderData(headerView,c);
 
     }
@@ -58,9 +58,9 @@ public class NavigationHandler {
         AlertDialog alertDialog = alertBuilder.create();
         alertDialog.setTitle("Confirm ?");
         alertDialog.show();
-        if(Login.flagFB==true) {
+       // if(Login.flagFB==true) {
             LoginManager.getInstance().logOut();
-            Login.flagFB=false;
+       //     Login.flagFB=false;
         }
     }
 
@@ -85,5 +85,5 @@ public class NavigationHandler {
             signup.setVisibility(View.VISIBLE);
 
         }
-    }
+    }*/
 }

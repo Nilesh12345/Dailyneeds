@@ -58,7 +58,7 @@ public class FbLogin {
             }
             //login.setSession(name,email);
             UserSharedPreference.createUserLoginSession(name,email);
-            Login.flagFB=true;
+            //Login.flagFB=true;
             Intent i=new Intent(c, MainActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

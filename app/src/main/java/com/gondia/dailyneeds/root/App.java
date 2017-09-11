@@ -9,19 +9,19 @@ import com.gondia.dailyneeds.Login.LoginModule;
  */
 
 public class App extends Application {
-    private ApplicationComponent applicationComponent;
+    private ApplicationComponent component;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-        applicationComponent = DaggerApplicationComponent.builder()
-                .applicationModule(new ApplicationModule(this))
+        component = DaggerApplicationComponent.builder()
+               .applicationModule(new ApplicationModule(this))
                 .loginModule(new LoginModule())
                 .build();
     }
 
-    public ApplicationComponent getApplicationComponent() {
-        return applicationComponent;
+    public ApplicationComponent getComponent() {
+        return component;
     }
 }
