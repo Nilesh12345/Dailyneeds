@@ -5,9 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.gondia.dailyneeds.Login"
+    tools:context="com.gondia.dailyneeds.Login.Login"
     android:orientation="vertical"
-    tools:showIn="@layout/activity_login">
+    tools:showIn="@layout/activity_login"
+    android:weightSum="1">
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -49,5 +50,13 @@
         android:text="skip login"
         android:layout_gravity="center"
         android:id="@+id/skipToMain"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.78" />
+
 
 </LinearLayout>

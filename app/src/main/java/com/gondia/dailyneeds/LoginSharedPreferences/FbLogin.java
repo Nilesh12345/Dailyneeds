@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.gondia.dailyneeds.Login;
+import com.gondia.dailyneeds.Login.Login;
 import com.gondia.dailyneeds.MainActivity;
 
 import org.json.JSONObject;

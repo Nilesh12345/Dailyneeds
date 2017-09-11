@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.login.LoginManager;
-import com.gondia.dailyneeds.Login;
+import com.gondia.dailyneeds.Login.Login;
 import com.gondia.dailyneeds.LoginSharedPreferences.UserSharedPreference;
 import com.gondia.dailyneeds.R;
 

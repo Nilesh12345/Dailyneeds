@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
-import com.gondia.dailyneeds.Login;
+import com.gondia.dailyneeds.Login.Login;
 
 /**
  * Created by Nilesh1 on 08-09-2017.
