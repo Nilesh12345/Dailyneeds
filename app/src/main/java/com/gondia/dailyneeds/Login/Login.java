@@ -2,6 +2,7 @@ package com.gondia.dailyneeds.Login;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -26,6 +27,7 @@ import com.facebook.login.widget.LoginButton;
 import com.gondia.dailyneeds.LoginSharedPreferences.UserSharedPreference;
 import com.gondia.dailyneeds.MainActivity;
 import com.gondia.dailyneeds.R;
+import com.gondia.dailyneeds.helperClass.FontManager;
 import com.gondia.dailyneeds.root.App;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -96,6 +98,12 @@ public class Login extends AppCompatActivity implements LoginActivityMVP.View/*V
         //glogin = (ImageButton) findViewById(R.id.gplusloginbt);
         //glogin.setOnClickListener(this);
         //login.setOnClickListener(this);
+
+        Typeface tf=Typeface.createFromAsset(getAssets(),"fonts/fontawesome-webfont.ttf");
+        //TextView text=(TextView)findViewById(R.id.awesome);
+       // text.setTypeface(tf);
+        Typeface iconFont = FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOME);
+        FontManager.markAsIconContainer(findViewById(R.id.awesome), iconFont);
     }
 
     @Override

@@ -39,10 +39,10 @@ dependencies {
     apply plugin: 'com.google.gms.google-services'
 
     //rest Interaction
-    compile 'com.squareup.retrofit2:retrofit:2.0.2'
+    //compile 'com.squareup.retrofit2:retrofit:2.0.2'
 
     // JSON  Parsing
-    compile 'com.squareup.retrofit2:retrofit:converter-gson:2.0.2'
+   // compile 'com.squareup.retrofit2:retrofit:converter-gson:2.0.2'
     compile 'com.google.code.gson:gson:2.6.2'
 
     //http Login
