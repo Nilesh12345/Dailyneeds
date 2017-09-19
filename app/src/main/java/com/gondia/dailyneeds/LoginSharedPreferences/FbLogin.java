@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.gondia.dailyneeds.Login.Login;
-import com.gondia.dailyneeds.MainActivity;
+import com.gondia.dailyneeds.MainPage.MainActivity;
 
 import org.json.JSONObject;
 

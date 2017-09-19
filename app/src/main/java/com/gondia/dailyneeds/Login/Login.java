@@ -1,51 +1,23 @@
 package com.gondia.dailyneeds.Login;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
-import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
-import com.gondia.dailyneeds.LoginSharedPreferences.UserSharedPreference;
-import com.gondia.dailyneeds.MainActivity;
+import com.gondia.dailyneeds.MainPage.MainActivity;
 import com.gondia.dailyneeds.R;
 import com.gondia.dailyneeds.helperClass.FontManager;
 import com.gondia.dailyneeds.root.App;
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.auth.api.signin.GoogleSignInResult;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
 
 import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
-
-import org.json.JSONObject;
-
-import java.util.Arrays;
 
 import javax.inject.Inject;
-
-import static com.gondia.dailyneeds.LoginSharedPreferences.FbLogin.getFacebookData;
 
 public class Login extends AppCompatActivity implements LoginActivityMVP.View/*View.OnClickListener,GoogleApiClient.OnConnectionFailedListener */{
 
@@ -146,6 +118,12 @@ public class Login extends AppCompatActivity implements LoginActivityMVP.View/*V
     @Override
     public void setLastName(String lname) {
         password.setText(lname);
+    }
+
+    @Override
+    public void userSuccess() {
+        Intent i=new Intent(this,MainActivity.class);
+        startActivity(i);
     }
         /*
 

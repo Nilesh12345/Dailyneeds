@@ -28,7 +28,8 @@ public class LoginActivityPresenter implements LoginActivityMVP.Presenter {
             }
             else {
                 model.createUser(view.getFirstName(),view.getLastName());
-                view.showUserSavedMessage();
+                view.userSuccess();
+
             }
         }
 

@@ -16,6 +16,7 @@ public interface LoginActivityMVP {
         void setFirstName(String fname);
         void setLastName(String lname);
 
+        void userSuccess();
 
     }
 

@@ -38,6 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/fa_google"
+        android:onClick="naresh"
         android:textColor="#ce0b0b"
         android:textSize="40sp"
         android:id="@+id/gplusloginbt"

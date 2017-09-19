@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import com.gondia.dailyneeds.Login.Login;
 import com.gondia.dailyneeds.LoginSharedPreferences.UserSharedPreference;
+import com.gondia.dailyneeds.MainPage.MainActivity;
 
 public class Splash extends AppCompatActivity {
     UserSharedPreference preference;

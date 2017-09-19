@@ -20,7 +20,7 @@ import com.gondia.dailyneeds.R;
  */
 
 public class NavigationHandler {
-   /* public static void processNavigationDrawer(View headerView, Context c) {
+    public static void processNavigationDrawer(View headerView, Context c) {
         setLoginHeaderData(headerView,c);
 
     }
@@ -29,7 +29,7 @@ public class NavigationHandler {
 
         switch (d.getId()) {
             case R.id.navLogout:
-                logout(context, d);
+                //logout(context, d);
                 break;
             case R.id.navLogin:
                 context.startActivity(new Intent(context,Login.class));
@@ -40,7 +40,7 @@ public class NavigationHandler {
         }
         return true;
 
-    }
+    }/*
     private static void logout(final Context context, final View headerView) {
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
         alertBuilder.setMessage("Are you sure you want to logout");
@@ -62,7 +62,7 @@ public class NavigationHandler {
             LoginManager.getInstance().logOut();
        //     Login.flagFB=false;
         }
-    }
+    }*/
 
     public static void setLoginHeaderData(View headerView, Context c){
         if(UserSharedPreference.isUserLoggedIn()){
@@ -85,5 +85,5 @@ public class NavigationHandler {
             signup.setVisibility(View.VISIBLE);
 
         }
-    }*/
+    }
 }
